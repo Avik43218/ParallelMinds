@@ -1,2 +1,6 @@
 .vscode/
 sample-data/
+cleaned_resumes/
+target/target.bin
+src/recruit.exe
+scores.csv

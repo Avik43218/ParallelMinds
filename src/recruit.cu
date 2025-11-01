@@ -137,7 +137,7 @@ DataCorpus preprocess_corpus(const string &folder_path) {
 
         all_hashes.insert(all_hashes.end(), hashes.begin(), hashes.end());
         offsets.push_back(all_hashes.size());
-        applicant_ids.push_back(fs::path(file).stem().string());
+        applicant_ids.push_back(fs::path(file).stem().string().substr(8));
     }
 
     DataCorpus corpus;
@@ -197,7 +197,7 @@ void compare_all_resumes(const DataCorpus &corpus, const string &target_path) {
     ofstream out("../scores.csv");
     out << "applicant,similarity\n";
     for (auto &r : results)
-        out << r.first << "," << r.second << "\n";
+        out << r.first << "," << r.second * 10 << "\n";
     out.close();
 
     cout << "Scores written to scores.csv\n";

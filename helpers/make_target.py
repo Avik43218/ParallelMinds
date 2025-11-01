@@ -35,7 +35,7 @@ def make_target_bin(txt_path: str, bin_path: str):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
-        print("Usage: python make_target_bin.py <target_resume.txt>")
+        print("Usage: python make_target.py <target_resume.txt>")
         sys.exit(1)
 
     txt_path = sys.argv[1]

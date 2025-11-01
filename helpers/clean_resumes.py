@@ -73,7 +73,7 @@ def process_resume(filepath: Path, output_dir: Path) -> str:
 
 
 def main():
-    input_dir = "D:\\Programs\\Hackathon\\parallel-recruition-system\\sample-data"
+    input_dir = "D:\\Programs\\Hackathon\\cuda-recruitment-system\\sample-data"
     input_dir = Path(input_dir)
     if not input_dir.exists():
         print(f"Error: Folder '{input_dir}' does not exist.")
