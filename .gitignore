@@ -4,3 +4,4 @@ cleaned_resumes/
 target/target.bin
 src/recruit.exe
 scores.csv
+web/__pycache__/
