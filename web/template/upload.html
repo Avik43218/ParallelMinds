@@ -1,24 +1,73 @@
-<html>
-    <head>
-        <title>Upload Info</title>
-    </head>
-    <body>
-        <form method="POST" action="" enctype="multipart/form-data">
-            <div>
-                {{ form.name.label }}
-                {{ form.name }}
-                <br />
-                {{ form.contact.label }}
-                {{ form.contact }}
-                <br />
-                {{ form.email.label }}
-                {{ form.email }}
-                <br />
-                {{ form.resume.label }}
-                {{ form.resume }}
-                <br />
-                {{ form.submit }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Submit Your Information</h1>
+            <p>Join our community by providing your details</p>
+        </div>
+        
+        <form method="POST" action="" enctype="multipart/form-data" id="uploadForm" class="form-wrapper">
+            <div class="form-group">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-input", placeholder="Enter your full name") }}
+                <span class="form-error" id="nameError"></span>
             </div>
+
+            <div class="form-group">
+                {{ form.contact.label(class="form-label") }}
+                {{ form.contact(class="form-input", placeholder="Enter your phone number") }}
+                <span class="form-error" id="contactError"></span>
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-input", placeholder="Enter your email address") }}
+                <span class="form-error" id="emailError"></span>
+            </div>
+
+            <div class="form-group form-group-file">
+                <label class="form-label">{{ form.resume.label }}</label>
+                <div class="file-upload-wrapper">
+                    {{ form.resume(id="resumeInput", class="file-input", accept=".pdf,.doc,.docx") }}
+                    <label for="resumeInput" class="file-upload-label">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span class="upload-text">Click to upload or drag and drop</span>
+                        <span class="upload-hint">PDF, DOC, DOCX (max 5MB)</span>
+                    </label>
+                    <div class="file-name" id="fileName"></div>
+                </div>
+                <span class="form-error" id="resumeError"></span>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-text">Submit Application</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
         </form>
-    </body>
+
+        <div class="success-message" id="successMessage">
+            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <h3>Success!</h3>
+            <p>Your application has been submitted successfully.</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+</body>
 </html>

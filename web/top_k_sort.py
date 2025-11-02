@@ -14,10 +14,10 @@ def get_top_k(scores_csv, k=10, output_file="top_k.csv"):
     print(f"Top {k} applicants saved to {output_file}\n")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python top_k_sort.py <scores.csv> <K>")
+    if len(sys.argv) < 2:
+        print("Usage: python top_k_sort.py <scores.csv>")
         sys.exit(1)
 
     scores_csv = sys.argv[1]
-    k = int(sys.argv[2])
+    k = 100
     get_top_k(scores_csv, k)

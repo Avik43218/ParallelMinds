@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Received</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            
+            <h1>Your Response Has Been Recorded</h1>
+            
+            <p class="success-message">
+                Thank you for submitting your application. We've received all your information and will review it carefully.
+            </p>
+            
+            <div class="success-details">
+                <div class="detail-item">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value">Received</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Next Step</span>
+                    <span class="detail-value">Review Process</span>
+                </div>
+            </div>
+            
+            <p class="contact-info">
+                We'll be in touch shortly. Keep an eye on your email for updates.
+            </p>
+            
+            <div class="success-actions">
+                <a href="/" class="btn btn-primary">Submit Another Form</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/success.js') }}"></script>
+</body>
+</html>

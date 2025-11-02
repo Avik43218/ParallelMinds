@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Recruitment Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>Recruitment Dashboard</h1>
+                <p>Review applicants and their skill matches</p>
+            </div>
+            <div class="header-filters">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-box" placeholder="Search by name or email...">
+                    <!-- Added clear button and search results counter -->
+                    <button id="clearSearchBtn" class="clear-search-btn" onclick="clearSearch()" style="display: none;">✕</button>
+                    <span id="searchResultsCount" class="search-results-count"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Applicants Grid -->
+        <main class="applicants-grid">
+            {% for applicant in applicants %}
+            <div class="applicant-card" data-name="{{ applicant.name }}" data-email="{{ applicant.email }}" data-match="{{ applicant.match_percentage }}">
+                <!-- Card Header with Match Score -->
+                <div class="card-header">
+                    <div class="applicant-info">
+                        <h2 class="applicant-name">{{ applicant.name }}</h2>
+                        <p class="applicant-contact">{{ applicant.contact }}</p>
+                        <p class="applicant-email">{{ applicant.email }}</p>
+                    </div>
+                    <div class="match-score">
+
+                        <span class="match-percentage {% if applicant.match_percentage >= 75 %}text-green{% elif applicant.match_percentage >= 50 %}text-yellow{% else %}text-red{% endif %}">{{ applicant.match_percentage }}%</span>
+                        <span class="match-label">Match</span>
+
+                    </div>
+                </div>
+
+                <!--
+                Skills Comparison 
+                <div class="skills-section">
+                    <h3>Skill Matching</h3>
+                    
+                    Required Skills 
+                    <div class="skills-category">
+                        <h4>Required Skills</h4>
+                        <div class="skills-list">
+                            {% for skill in applicant.required_skills %}
+                            <span class="skill-tag {% if skill.matched %}matched{% else %}missing{% endif %}">
+                                <span class="skill-icon">{% if skill.matched %}✓{% else %}✕{% endif %}</span>
+                                {{ skill.name }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    Extra Skills 
+                    {% if applicant.extra_skills %}
+                    <div class="skills-category">
+                        <h4>Bonus Skills</h4>
+                        <div class="skills-list">
+                            {% for skill in applicant.extra_skills %}
+                            <span class="skill-tag extra">
+                                <span class="skill-icon">★</span>
+                                {{ skill }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            -->
+                <!-- Resume -->
+                <div class="resume-section">
+                    <!-- Updated to pass file path instead of URL -->
+                    <button class="resume-btn" onclick="downloadResume(event, '{{ applicant.name }}', '{{ applicant.resume_url }}')">
+                        📄 Download Resume 
+                    </button>
+                    
+                </div>
+                <!-- Expandable Details -->
+                <div class="card-details" style="display: none;">
+                    <p><strong>Overall Match:</strong> {{ applicant.match_percentage }}%</p>
+                    <!-- <p><strong>Matched Skills:</strong> {{ applicant.matched_count }}/{{ applicant.total_skills }}</p> -->
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+
+        <div class="pagination-controls">
+            <button id="prevBtn" class="pagination-btn" onclick="previousPage()">← Previous</button>
+            <span id="pageInfo" class="page-info">Page 1</span>
+            <button id="nextBtn" class="pagination-btn" onclick="nextPage()">Next →</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
