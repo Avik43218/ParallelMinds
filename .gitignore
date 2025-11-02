@@ -5,3 +5,4 @@ target/target.bin
 src/recruit.exe
 scores.csv
 web/__pycache__/
+logs.txt

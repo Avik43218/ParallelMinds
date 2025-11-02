@@ -99,11 +99,18 @@ def download_resume():
 @app.route("/process")
 def process():
 
-    base_dir = "D:\\Programs\\Hackathon\\cuda-recruitment-system"
+    base_dir = "D:/Programs/Hackathon/cuda-recruitment-system"
+
+    src_dir = os.path.join(base_dir, "src")
+    core_path = os.path.join(src_dir, "recruit.exe")
+
+    print("Binary exists:", os.path.exists(core_path))
+    print("CWD:", src_dir)
+
 
     with open(os.path.join(base_dir, "logs.txt"), "w") as log:
         s_id = subprocess.run(
-            ["recruit.exe", "../cleaned_resumes", "../target/target.bin"],
+            [core_path, "../cleaned_resumes", "../target/target.bin"],
             cwd=os.path.join(base_dir, "src"),
             stdout=log,
             stderr=subprocess.STDOUT,
@@ -123,4 +130,4 @@ def process():
     if s_id.returncode != 0:
             raise RuntimeError("Resume processing failed!: " + s_id.stderr)
     else:
-        return redirect(url_for("form_route"))
+        return redirect(url_for("dashboard"))
