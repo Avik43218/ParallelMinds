@@ -13,7 +13,7 @@ def form_route():
     mysql_db = {
         "host": "localhost",
         "user": "root",
-        "passwd": "blackwell4772",
+        "passwd": "",
         "database": "auto_cv"
     }
 
